@@ -32,15 +32,16 @@ export const AuthProvider = ({children}) => {
 
     const logIn = async (login, password, navigate) => {
         try {
-            const res = await fetch("/bpm/login", {
+            const res = await fetch("/asupd/login", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
                 },
                 body: JSON.stringify({login, password}),
-            });
-            const data = await res.text();
-            localStorage.setItem("token", data);
+            })
+            .then(response => response.json());
+            const data = await res[0]();
+            localStorage.setItem("jwtToken", data);
            // const decodedToken = jwt_decode(data);
             console.log(data)
             setToken(localStorage.getItem("token"))

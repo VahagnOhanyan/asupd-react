@@ -1,6 +1,6 @@
 import {getCommonRequestProps} from "../common/common";
 
-export const getAllEmployees = (token) => fetch("/employee/all",
+export const getAllEmployees = (token) => fetch("asupd/employee/all",
         {
         method: "GET",
      ...getCommonRequestProps(),
