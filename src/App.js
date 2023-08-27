@@ -1,24 +1,30 @@
-import logo from './logo.svg';
-import './App.css';
+// src/App.js
+import React from 'react';
+import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+import { Drawer, List, ListItem, ListItemIcon, ListItemText } from '@mui/material';
+import { AccountCircle, Business, Assignment, RequestQuote, HourglassEmpty, AccessTime } from '@mui/icons-material';
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <Drawer variant="permanent">
+        <List>
+          <ListItem button component={Link} to="/employees">
+            <ListItemIcon>
+              <AccountCircle />
+            </ListItemIcon>
+            <ListItemText primary="Employees" />
+          </ListItem>
+          {/* Repeat similar ListItem components for other menu items */}
+        </List>
+      </Drawer>
+      <Switch>
+        <Route path="/employees">
+          {<Employees>}
+        </Route>
+        {/* Define routes for other menu items */}
+      </Switch>
+    </Router>
   );
 }
 
