@@ -1,4 +1,4 @@
-import React, {createContext, useContext, useState, useEffect} from "react";
+import React, {createContext, useContext, useState} from "react";
 import jwt_decode from "jwt-decode";
 
 
@@ -7,9 +7,9 @@ const AuthContext = createContext('');
 export const AuthProvider = ({children}) => {
     const [user, setUser] = useState(null);
     const [token, setToken] = useState(null);
-    useEffect(() => {
+ //   useEffect(() => {
         // Check if there's a JWT token stored in localStorage
-        const jwt = localStorage.getItem("token");
+      /*  const jwt = localStorage.getItem("token");
         if (jwt) {
             // Send a request to the backend to verify the JWT token
             fetch("/bpm/login", {
@@ -28,7 +28,7 @@ export const AuthProvider = ({children}) => {
                     console.log(err);
                 });
         }
-    }, []);
+    }, []);*/
 
     const logIn = async (login, password, navigate) => {
         try {
@@ -41,16 +41,16 @@ export const AuthProvider = ({children}) => {
             });
             const data = await res.text();
             localStorage.setItem("token", data);
-            const decodedToken = jwt_decode(data);
-            console.log(decodedToken)
+           // const decodedToken = jwt_decode(data);
+            console.log(data)
             setToken(localStorage.getItem("token"))
-            setUser(decodedToken.user);
-            navigate(-1);
+          //  setUser(decodedToken.user);
+            // navigate(-1);
         } catch (err) {
             console.log(err);
         }
     };
-    const signUp = async (login, password, firstName, lastName, role, privileges, telegramId) => {
+   /* const signUp = async (login, password, firstName, lastName, role, privileges, telegramId) => {
         try {
             const res = await fetch("/bpm/admin/users/create", {
                 method: "POST",
@@ -68,7 +68,7 @@ export const AuthProvider = ({children}) => {
             console.log(err);
         }
     };
-
+*/
     const logOut = () => {
         localStorage.removeItem("token");
         setUser(null);
@@ -76,7 +76,7 @@ export const AuthProvider = ({children}) => {
 
     const authValues = {
         logIn,
-        signUp,
+      //  signUp,
         logOut,
         token
     };

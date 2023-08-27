@@ -1,6 +1,6 @@
-import {useAuth} from "../../auth/AuthProvider";
 import * as Yup from "yup";
 import {Formik} from "formik";
+import {useAuth} from "../auth/AuthProvider";
 
 const validationSchema = Yup.object().shape({
     login: Yup.string().required("Login is required"),
