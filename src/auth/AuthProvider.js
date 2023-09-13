@@ -40,13 +40,13 @@ export const AuthProvider = ({children}) => {
                 body: JSON.stringify({login, password}),
             })
             .then(response => response.json());
-            const data = await res[0]();
-            localStorage.setItem("jwtToken", data);
+
+            localStorage.setItem("jwtToken", res["token"]);
            // const decodedToken = jwt_decode(data);
-            console.log(data)
-            setToken(localStorage.getItem("token"))
+
+            setToken(localStorage.getItem("jwtToken"))
           //  setUser(decodedToken.user);
-            // navigate(-1);
+             navigate("/");
         } catch (err) {
             console.log(err);
         }
